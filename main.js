@@ -9,7 +9,6 @@ function setup(){
     objetDetector = ml5.objectDetector("cocossd", modelLoaded);
     document.getElementById("status").innerHTML = "Status: Detecting object";
     video = createCapture(VIDEO);
-    video.size(500, 380)
     video.hide();
 }
 
@@ -33,13 +32,13 @@ function draw(){
             rect(object[i].x, object[i].y, object[i].width, object[i].height);
             console.log(object[i].x+" "+object[i].y);
             if(object[i].label == "person"){
-                document.getElementById("number-of-objects").innerHTML = "Baby Found";
-                sound.stop()
+                document.getElementById("number-of-objects").innerHTML = "Baby found";
+                sound.stop(); 
+            }else{
+                document.getElementById("number-of-objects").innerHTML = "Baby not found";
+                sound.play(); 
             }
-            else{
-                document.getElementById("number-of-objects").innerHTML = "Baby Not found";
-                sound.play();
-            }
+            
         }
     }
 }
